@@ -1,0 +1,163 @@
+---
+// src/components/Header.astro
+import { siteConfig } from '../data/site-config';
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Services & Events', href: '/services-events' },
+  { name: 'Sermons', href: '/sermons' },
+  { name: 'Visit Us', href: '/visit-us' },
+  { name: 'Contact', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">
+      <span class="brand-name">{siteConfig.name}</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <ul>
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class:list={{ active: currentPath === link.href }}>
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      class="mobile-menu-btn" 
+      aria-label="Toggle navigation menu" 
+      aria-expanded="false" 
+      aria-controls="mobile-nav"
+    >
+      <span class="hamburger"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation (Hidden by default) -->
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <ul>
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class:list={{ active: currentPath === link.href }}>
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+  }
+
+  .brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .desktop-nav ul {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+  }
+
+  .desktop-nav a {
+    text-decoration: none;
+    color: var(--color-text-main);
+    font-weight: 500;
+  }
+
+  .desktop-nav a:hover, .desktop-nav a.active {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+  }
+
+  .hamburger, .hamburger::before, .hamburger::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text-main);
+    position: relative;
+  }
+  .hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+  }
+  .hamburger::before { top: -8px; }
+  .hamburger::after { bottom: -8px; }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .desktop-nav { display: none; }
+    .mobile-menu-btn { display: block; }
+
+    .mobile-nav {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-sm) 0;
+    }
+    
+    .mobile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: var(--space-sm) var(--space-md);
+      text-decoration: none;
+      color: var(--color-text-main);
+    }
+
+    .mobile-nav a.active {
+      background-color: var(--color-background);
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector('.mobile-menu-btn');
+  const nav = document.querySelector('#mobile-nav');
+
+  btn?.addEventListener('click', () => {
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !isExpanded);
+    nav?.toggleAttribute('hidden');
+  });
+</script>

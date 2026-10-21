@@ -1,11 +1,197 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site-config';
 ---
+<BaseLayout title={`Home - ${siteConfig.name}`}>
+  
+  <!-- 6.1 HERO SECTION -->
+  <section class="hero section">
+    <div class="container text-center">
+      <h1 class="hero-title">[PLACEHOLDER: WELCOME_MESSAGE]</h1>
+      <p class="hero-subtitle">{siteConfig.shortDescription}</p>
+      <div class="hero-actions">
+        <a href="/visit-us" class="btn btn-primary">Plan Your Visit</a>
+        <a href="/about" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+  </section>
 
-<Layout>
-	<Welcome />
-</Layout>
+  <!-- 6.2 NEXT / REGULAR SERVICE -->
+  <section class="next-service section">
+    <div class="container text-center">
+      <div class="service-card">
+        <h2>Join Us This Sunday</h2>
+        <!-- Pulls the day and start time from the first service in the config -->
+        <p class="service-time">{siteConfig.serviceTimes[0].day} at {siteConfig.serviceTimes[0].time.split('–')[0].trim()}</p>
+        <p class="service-location">{siteConfig.location}</p>
+        <a href="/visit-us" class="btn btn-primary">Get Directions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6.3 WELCOME / INTRODUCTION -->
+  <section class="welcome section">
+    <div class="container-narrow text-center">
+      <h2>Welcome to {siteConfig.name}</h2>
+      <p>[PLACEHOLDER: SHORT_INTRODUCTION_TO_THE_MINISTRY]</p>
+      <a href="/about" class="btn btn-secondary">Learn More About Us</a>
+    </div>
+  </section>
+
+  <!-- 6.4 UPCOMING EVENTS -->
+  <section class="events section">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Upcoming Events</h2>
+        <p>Join us for our upcoming programmes and gatherings.</p>
+      </div>
+      
+      <div class="grid-3">
+        <!-- Event Card Placeholder -->
+        <div class="card">
+          <div class="card-body">
+            <h3>[PLACEHOLDER: EVENT_TITLE]</h3>
+            <p class="card-meta">[PLACEHOLDER: DATE] | [PLACEHOLDER: TIME]</p>
+            <p>[PLACEHOLDER: SHORT_DESCRIPTION]</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top: var(--space-lg);">
+        <a href="/services-events" class="btn btn-secondary">View All Events</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6.5 LATEST SERMON / MEDIA -->
+  <section class="sermons section">
+    <div class="container text-center">
+      <div class="section-header">
+        <h2>Short Teachings & Updates</h2>
+        <p>Catch our latest short messages on TikTok.</p>
+      </div>
+      
+      <div class="card" style="max-width: 600px; margin: 0 auto; padding: var(--space-lg);">
+        <p>We are preparing our full sermon library, but you can watch our short teachings and ministry updates right now on TikTok.</p>
+        <!-- Updated to TikTok -->
+        <a href={siteConfig.socials.tiktok} class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="margin-top: var(--space-sm);">Watch on TikTok</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6.6 VISIT US PREVIEW -->
+  <section class="visit-preview section">
+    <div class="container">
+      <div class="visit-grid">
+        <div>
+          <h2>Visit Us</h2>
+          <p><strong>Location:</strong> {siteConfig.location}</p>
+          
+          <!-- Loops through all three services for the homepage preview -->
+          <p style="margin-bottom: var(--space-xs);"><strong>Weekly Services:</strong></p>
+          <ul style="list-style: none; padding: 0; margin-bottom: var(--space-md);">
+            {siteConfig.serviceTimes.map((service) => (
+              <li style="font-size: 0.95rem; margin-bottom: 4px;">
+                <strong>{service.day}:</strong> {service.name} <span style="color: var(--color-text-muted);">({service.time})</span>
+              </li>
+            ))}
+          </ul>
+
+          <a href="/visit-us" class="btn btn-primary" style="margin-top: var(--space-sm);">Get Directions</a>
+        </div>
+        <div class="map-placeholder" style="text-align: center;">
+          <p>Click below to view our exact location.</p>
+          <a href={siteConfig.address.googleMapsLink} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Open Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6.7 CONTACT CTA -->
+  <section class="contact-cta section text-center">
+    <div class="container">
+      <h2>How Can We Pray For You?</h2>
+      <p>We would love to hear from you. Reach out to us today.</p>
+      <div class="hero-actions" style="margin-top: var(--space-md);">
+        <!-- Uses the first phone number from the array -->
+        <a href={`tel:${siteConfig.contact.phones[0]}`} class="btn btn-primary">Call Us</a>
+        <a href="/contact" class="btn btn-secondary">Contact Page</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* === UTILITIES & GLOBAL SECTION STYLES === */
+  .section-header {
+    margin-bottom: var(--space-xl);
+  }
+  .section-header p {
+    color: var(--color-text-muted);
+  }
+
+  /* === HERO === */
+  .hero { background-color: var(--color-surface); padding: var(--space-xxl) 0; }
+  .hero-title { font-size: 2.5rem; margin-bottom: var(--space-sm); }
+  .hero-subtitle { font-size: 1.25rem; color: var(--color-text-muted); margin-bottom: var(--space-lg); max-width: 600px; margin-inline: auto; }
+  .hero-actions { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
+
+  /* === NEXT SERVICE === */
+  .next-service { background-color: var(--color-primary); color: #ffffff; }
+  .service-card h2 { color: #ffffff; }
+  .service-time { font-size: 1.5rem; font-weight: bold; margin-bottom: var(--space-xs); }
+  .service-location { margin-bottom: var(--space-md); opacity: 0.9; }
+
+  /* === WELCOME === */
+  .welcome { background-color: var(--color-background); }
+
+  /* === CARDS & GRIDS === */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  @media (min-width: 768px) {
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .card-body { padding: var(--space-md); }
+  .card-meta { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: var(--space-sm); font-weight: 500; }
+
+  /* === VISIT PREVIEW === */
+  .visit-preview { background-color: var(--color-background); }
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .visit-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .map-placeholder {
+    background-color: var(--color-surface);
+    border: 1px dashed var(--color-text-muted);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    color: var(--color-text-muted);
+  }
+
+  /* === CONTACT CTA === */
+  .contact-cta { background-color: var(--color-surface); border-top: 1px solid var(--color-border); }
+</style>

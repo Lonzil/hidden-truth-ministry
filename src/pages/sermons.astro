@@ -1,0 +1,48 @@
+---
+// src/pages/sermons.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site-config';
+---
+<BaseLayout title={`Sermons & Media - ${siteConfig.name}`} description="Listen to and watch our latest sermons and teachings.">
+  
+  <section class="page-header section">
+    <div class="container text-center">
+      <h1>Sermons & Media</h1>
+      <p class="subtitle">Grow in your faith by catching up on our latest teachings and messages.</p>
+    </div>
+  </section>
+
+  <section class="coming-soon-section section">
+    <div class="container-narrow text-center">
+      <div class="card" style="padding: var(--space-xl);">
+        <h2>Full Sermon Library Coming Soon</h2>
+        <p>We are currently working on uploading our full-length sermons and teachings to this page. Please check back soon!</p>
+        
+        <p style="margin-top: var(--space-md);">In the meantime, watch our short messages and ministry updates on TikTok!</p>
+        
+        <div style="margin-top: var(--space-lg);">
+          <!-- Updated to use your real TikTok link from site-config -->
+          <a href={siteConfig.socials.tiktok} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Watch on TikTok</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { background-color: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  .subtitle { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; margin-inline: auto; }
+  
+  .coming-soon-section {
+    background-color: var(--color-background);
+    padding: var(--space-xxl) 0;
+  }
+  
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+</style>

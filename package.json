@@ -8,10 +8,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check-placeholders": "node scripts/check-placeholders.js",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.4.0"
   }
 }

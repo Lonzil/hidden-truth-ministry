@@ -1,0 +1,68 @@
+---
+// src/pages/privacy.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site-config';
+---
+<BaseLayout title={`Privacy Policy - ${siteConfig.name}`} description="Our website privacy policy and data practices.">
+  
+  <section class="page-header section">
+    <div class="container-narrow">
+      <h1>Privacy Policy</h1>
+      <p class="subtitle">Last updated: October 2026</p>
+    </div>
+  </section>
+
+  <section class="content-section section">
+    <div class="container-narrow">
+      
+      <p>This Privacy Policy explains how <strong>{siteConfig.name}</strong> handles information on this website.</p>
+
+      <h2>1. Information We Collect</h2>
+      <p>This website is a static informational site. We do not have a contact form, user accounts, or a database. We do not automatically collect, store, or share any personal information from visitors.</p>
+
+      <h2>2. Cookies and Tracking</h2>
+      <p>This website does not use cookies, local storage, or third-party tracking scripts. We do not track your browsing behavior across the internet.</p>
+
+      <h2>3. External Links</h2>
+      <p>Our website contains links to external platforms, including WhatsApp, Facebook, TikTok, and Google Maps. If you click on these links, you will be directed to those third-party platforms. Please review their respective privacy policies to understand how they handle your data.</p>
+
+      <h2>4. Contacting Us</h2>
+      <p>If you contact us via phone or WhatsApp, we will only use the information you voluntarily provide to respond to your inquiry, pray with you, or provide information about the ministry. We do not add you to mailing lists without your permission.</p>
+
+      <h2>5. Changes to this Policy</h2>
+      <p>We may update this policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+
+      <p style="margin-top: var(--space-xl);"><em>Note: This policy accurately reflects the current V1 static website. If the ministry adds features like a contact form, online giving, or analytics in the future, this policy must be reviewed and updated.</em></p>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { 
+    background-color: var(--color-surface); 
+    border-bottom: 1px solid var(--color-border); 
+    padding: var(--space-xl) 0; 
+  }
+  .page-header h1 { 
+    margin-bottom: var(--space-xs); 
+  }
+  .subtitle { 
+    color: var(--color-text-muted); 
+    font-size: 1.1rem;
+  }
+  
+  .content-section { 
+    padding: var(--space-xl) 0; 
+  }
+  .content-section h2 { 
+    margin-top: var(--space-lg); 
+    margin-bottom: var(--space-sm); 
+    font-size: 1.5rem;
+  }
+  .content-section p { 
+    margin-bottom: var(--space-md); 
+    line-height: 1.8;
+  }
+</style>

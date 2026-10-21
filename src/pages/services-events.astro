@@ -1,0 +1,115 @@
+---
+// src/pages/services-events.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site-config';
+---
+<BaseLayout title="Services & Events - [PLACEHOLDER: CHURCH_NAME]" description="View our regular service times and upcoming ministry programmes.">
+  
+  <section class="page-header section">
+    <div class="container text-center">
+      <h1>Services & Events</h1>
+      <p class="subtitle">Find out when we meet and what's coming up next.</p>
+    </div>
+  </section>
+
+  <section class="services-section section">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2>Regular Services</h2>
+        <p>We gather regularly to worship, pray, and study the Word.</p>
+      </div>
+      
+      <div class="grid-3">
+        <!-- Service Card 1 -->
+        <div class="card">
+          <div class="card-body">
+            <h3>[PLACEHOLDER: SERVICE_NAME]</h3>
+            <p class="card-meta"><strong>Day:</strong> [PLACEHOLDER: DAY]</p>
+            <p class="card-meta"><strong>Time:</strong> [PLACEHOLDER: TIME]</p>
+            <p class="card-meta"><strong>Location:</strong> {siteConfig.location}</p>
+          </div>
+        </div>
+        
+        <!-- Service Card 2 (Placeholder for Bible Study) -->
+        <div class="card">
+          <div class="card-body">
+            <h3>[PLACEHOLDER: SERVICE_NAME]</h3>
+            <p class="card-meta"><strong>Day:</strong> [PLACEHOLDER: DAY]</p>
+            <p class="card-meta"><strong>Time:</strong> [PLACEHOLDER: TIME]</p>
+            <p class="card-meta"><strong>Location:</strong> {siteConfig.location}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="events-section section">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2>Upcoming Events</h2>
+        <p>Join us for our special programmes and gatherings.</p>
+      </div>
+      
+      <div class="grid-2">
+        <!-- Event 1 -->
+        <div class="card">
+          <div class="event-image-placeholder">[PLACEHOLDER: EVENT_IMAGE]</div>
+          <div class="card-body">
+            <h3>[PLACEHOLDER: EVENT_TITLE]</h3>
+            <p class="card-meta"><strong>Date:</strong> [PLACEHOLDER: DATE] | <strong>Time:</strong> [PLACEHOLDER: TIME]</p>
+            <p class="card-meta"><strong>Location:</strong> [PLACEHOLDER: EVENT_LOCATION]</p>
+            <p>[PLACEHOLDER: SHORT_DESCRIPTION]</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top: var(--space-lg);">
+        <p><em>More events will be added soon. Check back later!</em></p>
+        <a href="/contact" class="btn btn-secondary">Contact Us for More Info</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+  .services-section {
+    background-color: var(--color-background);
+  }
+
+  .events-section {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  @media (min-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+  }
+
+  .event-image-placeholder {
+    background-color: var(--color-border);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-border);
+  }
+</style>

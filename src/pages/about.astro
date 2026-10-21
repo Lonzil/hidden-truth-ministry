@@ -1,0 +1,125 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site-config';
+---
+<BaseLayout title="About Us - [PLACEHOLDER: CHURCH_NAME]" description="Learn more about our history, mission, vision, and leadership.">
+  
+  <section class="page-header section">
+    <div class="container text-center">
+      <h1>About {siteConfig.name}</h1>
+      <p class="subtitle">[PLACEHOLDER: SHORT_INTRODUCTION]</p>
+    </div>
+  </section>
+
+  <section class="content-section section">
+    <div class="container-narrow">
+      
+      <div class="text-block">
+        <h2>Who We Are</h2>
+        <p>[PLACEHOLDER: WHO_WE_ARE]</p>
+      </div>
+
+      <div class="text-block">
+        <h2>Our Story</h2>
+        <p>[PLACEHOLDER: MINISTRY_HISTORY_/_STORY]</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-body">
+            <h2>Our Mission</h2>
+            <p>[PLACEHOLDER: MISSION_STATEMENT]</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h2>Our Vision</h2>
+            <p>[PLACEHOLDER: VISION_STATEMENT]</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <h2>Our Beliefs</h2>
+        <p>[PLACEHOLDER: STATEMENT_OF_BELIEFS]</p>
+        <p>Beliefs should be presented clearly and respectfully.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="leadership-section section">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2>Our Leadership</h2>
+        <p>Meet the people serving our ministry.</p>
+      </div>
+      
+      <div class="grid-3">
+        <!-- Leader Card Placeholder -->
+        <div class="card leader-card text-center">
+          <div class="leader-photo-placeholder">[PLACEHOLDER: LEADER_PHOTO]</div>
+          <div class="card-body">
+            <h3>[PLACEHOLDER: LEADER_NAME]</h3>
+            <p class="card-meta">[PLACEHOLDER: POSITION]</p>
+            <p>[PLACEHOLDER: SHORT_BIOGRAPHY]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section section">
+    <div class="container-narrow">
+      <div class="text-block">
+        <h2>What We Stand For</h2>
+        <p>[PLACEHOLDER: CORE_VALUES_/_PRINCIPLES]</p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin-inline: auto;
+  }
+  
+  .text-block {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+  @media (min-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+  }
+
+  .leadership-section {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .leader-photo-placeholder {
+    background-color: var(--color-border);
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+</style>

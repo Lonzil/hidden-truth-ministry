@@ -1,0 +1,21 @@
+---
+// src/pages/404.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Page Not Found - [PLACEHOLDER: CHURCH_NAME]">
+  <section class="error-page section text-center">
+    <div class="container-narrow">
+      <h1 class="error-code">404</h1>
+      <h2>Page Not Found</h2>
+      <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+      <a href="/" class="btn btn-primary" style="margin-top: var(--space-md);">Return Home</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-page { padding: var(--space-xxl) 0; }
+  .error-code { font-size: 6rem; color: var(--color-primary); line-height: 1; margin-bottom: 0; }
+  .error-page h2 { color: var(--color-text-main); margin-bottom: var(--space-sm); }
+  .error-page p { color: var(--color-text-muted); max-width: 500px; margin-inline: auto; }
+</style>

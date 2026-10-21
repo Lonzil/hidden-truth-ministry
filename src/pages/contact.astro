@@ -1,0 +1,87 @@
+---
+// src/pages/contact.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site-config';
+---
+<BaseLayout title="Contact Us - [PLACEHOLDER: CHURCH_NAME]" description="Get in touch with us via phone or WhatsApp.">
+  
+  <section class="page-header section">
+    <div class="container text-center">
+      <h1>Contact Us</h1>
+      <p class="subtitle">We would love to hear from you. Reach out to us using any of the methods below.</p>
+    </div>
+  </section>
+
+  <section class="contact-content section">
+    <div class="container">
+      <div class="grid-2">
+        
+        <!-- Contact Information Cards -->
+        <div class="card">
+          <div class="card-body text-center">
+            <h2>Phone</h2>
+            <div style="margin-bottom: var(--space-sm);">
+              {siteConfig.contact.phones.map((phone) => (
+                <p><a href={`tel:${phone}`} style="font-weight: bold; font-size: 1.1rem; color: var(--color-primary);">{phone}</a></p>
+              ))}
+            </div>
+            <a href={`tel:${siteConfig.contact.phones[0]}`} class="btn btn-secondary">Call Us</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body text-center">
+            <h2>WhatsApp</h2>
+            <p style="font-weight: bold; font-size: 1.1rem;">0541987020</p>
+            <!-- Updated link with the pre-filled message -->
+            <a href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(siteConfig.contact.whatsappMessage)}`} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Message Us</a>
+          </div>
+        </div>
+
+        <!-- Location card spans full width now that Email is removed -->
+        <div class="card" style="grid-column: 1 / -1;">
+          <div class="card-body text-center">
+            <h2>Location</h2>
+            <p>{siteConfig.location}</p>
+            <a href="/visit-us" class="btn btn-secondary">Get Directions</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="social-links text-center section-header" style="margin-top: var(--space-xl);">
+        <h2>Follow Us</h2>
+        <p>Stay connected with us on social media.</p>
+        <div class="social-grid">
+          <a href={siteConfig.socials.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href={siteConfig.socials.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href={siteConfig.socials.tiktok} target="_blank" rel="noopener noreferrer">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { background-color: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  .subtitle { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; margin-inline: auto; }
+
+  .contact-content { background-color: var(--color-background); }
+
+  .grid-2 {
+    display: grid; grid-template-columns: 1fr; gap: var(--space-md);
+  }
+  @media (min-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+  }
+
+  .social-grid {
+    display: flex; gap: var(--space-md); justify-content: center; margin-top: var(--space-sm);
+  }
+  .social-grid a {
+    font-weight: bold; text-decoration: none; padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--color-primary); border-radius: var(--border-radius);
+  }
+  .social-grid a:hover { background-color: var(--color-primary); color: white; }
+</style>

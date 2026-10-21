@@ -1,0 +1,95 @@
+---
+// src/pages/visit-us.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../data/site-config';
+---
+<BaseLayout title={`Visit Us - ${siteConfig.name}`} description="Find our location, directions, and service times.">
+  
+  <section class="page-header section">
+    <div class="container text-center">
+      <h1>Visit Us</h1>
+      <p class="subtitle">We would love to welcome you in person. Find out where we are and how to get here.</p>
+    </div>
+  </section>
+
+  <section class="visit-content section">
+    <div class="container">
+      <div class="visit-grid">
+        
+        <!-- Location & Contact Info -->
+        <div class="info-block">
+          <h2>Our Location</h2>
+          <div class="address-box card">
+            <div class="card-body">
+              <p><strong>{siteConfig.name}</strong></p>
+              <!-- Street address removed -->
+              <p>{siteConfig.address.area}, {siteConfig.address.region}</p>
+              <p>{siteConfig.address.country}</p>
+              <p class="landmark"><strong>Landmark:</strong> {siteConfig.address.landmark}</p>
+            </div>
+          </div>
+
+          <h2 style="margin-top: var(--space-lg);">Service Times</h2>
+          <ul class="service-list">
+            <!-- Loops through all three real services from site-config -->
+            {siteConfig.serviceTimes.map((service) => (
+              <li>
+                <strong>{service.day}:</strong> {service.name} <br/>
+                <span style="color: var(--color-text-muted); font-size: 0.9rem;">{service.time}</span>
+              </li>
+            ))}
+          </ul>
+
+          <h2 style="margin-top: var(--space-lg);">Contact Us</h2>
+          <div class="visit-actions">
+            <!-- Updated to use the first phone number from the array -->
+            <a href={`tel:${siteConfig.contact.phones[0]}`} class="btn btn-primary">Call Us</a>
+            <!-- Updated link with the pre-filled message -->
+            <a href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(siteConfig.contact.whatsappMessage)}`} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- Map & Directions -->
+        <div class="map-block">
+          <h2>Directions</h2>
+          <div class="map-placeholder">
+            <!-- We avoid embedding a heavy Google Map iframe on load for performance. We use a styled link instead. -->
+            <p>Click below to open our exact location in Google Maps.</p>
+            <!-- Updated to use the real Google Maps link from your config -->
+            <a href={siteConfig.address.googleMapsLink} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+          </div>
+          <p class="directions-text">[PLACEHOLDER: DIRECTIONS_/_LANDMARK_INFORMATION]</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header { background-color: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  .subtitle { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; margin-inline: auto; }
+  
+  .visit-grid {
+    display: grid; grid-template-columns: 1fr; gap: var(--space-xl);
+  }
+  @media (min-width: 768px) {
+    .visit-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .address-box { background-color: var(--color-surface); }
+  
+  .service-list { list-style: none; padding: 0; }
+  .service-list li { padding: var(--space-sm) 0; border-bottom: 1px solid var(--color-border); }
+
+  .visit-actions { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+
+  .map-placeholder {
+    background-color: var(--color-surface); border: 1px dashed var(--color-text-muted);
+    border-radius: var(--border-radius); display: flex; flex-direction: column; gap: var(--space-md);
+    align-items: center; justify-content: center; min-height: 300px; color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+  .directions-text { color: var(--color-text-muted); font-style: italic; }
+</style>
